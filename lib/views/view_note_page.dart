@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'note_provider.dart';
-import 'note.dart';
+import '../models/note.dart';
+import '../providers/notes_provider.dart';
 import 'add_edit_note_page.dart';
 
 class ViewNotePage extends ConsumerWidget {

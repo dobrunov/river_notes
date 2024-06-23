@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'note_provider.dart';
-import 'note.dart';
-import 'package:uuid/uuid.dart';
+import '../../models/note.dart';
+import '../providers/notes_provider.dart';
 
 class AddEditNotePage extends ConsumerWidget {
   final Note? note;
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
-  final Uuid uuid = const Uuid();
 
   AddEditNotePage({super.key, this.note}) {
     if (note != null) {
@@ -43,15 +41,11 @@ class AddEditNotePage extends ConsumerWidget {
 
                 if (title.isNotEmpty && content.isNotEmpty) {
                   if (note == null) {
-                    // Add new note
-                    final newNote = Note(
-                      id: uuid.v4(),
-                      title: title,
-                      content: content,
-                    );
-                    ref.read(notesProvider.notifier).addNote(newNote);
+                    ref.read(notesProvider.notifier).addNote(
+                          title,
+                          content,
+                        );
                   } else {
-                    // Edit existing note
                     final updatedNote = note!.copyWith(
                       title: title,
                       content: content,
