@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/note.dart';
-import '../providers/notes_provider.dart';
+import '../providers/note_provider.dart';
 
 class AddEditNotePage extends ConsumerWidget {
   final Note? note;
@@ -41,15 +41,9 @@ class AddEditNotePage extends ConsumerWidget {
 
                 if (title.isNotEmpty && content.isNotEmpty) {
                   if (note == null) {
-                    ref.read(notesProvider.notifier).addNote(
-                          title,
-                          content,
-                        );
+                    ref.read(notesProvider.notifier).addNote(title, content);
                   } else {
-                    final updatedNote = note!.copyWith(
-                      title: title,
-                      content: content,
-                    );
+                    final updatedNote = note!.copyWith(title: title, content: content);
                     ref.read(notesProvider.notifier).updateNote(updatedNote);
                   }
 

@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/note.dart';
+import '../models/note_repository.dart';
 import 'package:uuid/uuid.dart';
 
 class NoteViewModel extends StateNotifier<List<Note>> {
-  NoteViewModel() : super([]);
+  final NoteRepository repository;
+  NoteViewModel(this.repository) : super(repository.getNotes());
 
   final Uuid uuid = const Uuid();
 
@@ -13,14 +15,17 @@ class NoteViewModel extends StateNotifier<List<Note>> {
       title: title,
       content: content,
     );
-    state = [...state, newNote];
+    repository.addNote(newNote);
+    state = repository.getNotes();
   }
 
   void deleteNote(Note note) {
-    state = state.where((n) => n.id != note.id).toList();
+    repository.deleteNote(note);
+    state = repository.getNotes();
   }
 
   void updateNote(Note updatedNote) {
-    state = state.map((note) => note.id == updatedNote.id ? updatedNote : note).toList();
+    repository.updateNote(updatedNote);
+    state = repository.getNotes();
   }
 }
