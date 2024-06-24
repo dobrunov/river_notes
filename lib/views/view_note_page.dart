@@ -11,6 +11,9 @@ class ViewNotePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notes = ref.watch(notesProvider);
+    final currentNote = notes.firstWhere((n) => n.id == note.id, orElse: () => note);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('View Note'),
@@ -21,7 +24,7 @@ class ViewNotePage extends ConsumerWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddEditNotePage(note: note),
+                  builder: (context) => AddEditNotePage(note: currentNote),
                 ),
               );
             },
@@ -29,7 +32,7 @@ class ViewNotePage extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              ref.read(notesProvider.notifier).deleteNote(note);
+              ref.read(notesProvider.notifier).deleteNote(currentNote);
               Navigator.pop(context);
             },
           ),
@@ -41,12 +44,12 @@ class ViewNotePage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              note.title,
+              currentNote.title,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             Text(
-              note.content,
+              currentNote.content,
               style: const TextStyle(fontSize: 18),
             ),
           ],
