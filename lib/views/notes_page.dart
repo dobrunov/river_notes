@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/note_provider.dart';
 import 'add_edit_note_page.dart';
 import 'view_note_page.dart';
