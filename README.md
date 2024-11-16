@@ -1,6 +1,6 @@
-# river_notes
+# River_notes
 
-Note app with riverpod
+Simple note app with riverpod
 
 ## Steps
 
