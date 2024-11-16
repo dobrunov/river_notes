@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../models/note.dart';
 import '../providers/note_provider.dart';
@@ -48,7 +49,7 @@ class AddEditNotePage extends ConsumerWidget {
                     ref.read(notesProvider.notifier).updateNote(updatedNote);
                   }
 
-                  Navigator.pop(context);
+                  context.pop();
                 }
               },
               child: Text(note == null ? 'Add Note' : 'Update Note'),

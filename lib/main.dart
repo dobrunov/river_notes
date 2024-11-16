@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'views/notes_page.dart';
+import 'routes/app_router.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -12,12 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Notes App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const NotesPage(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      routerConfig: AppRouter.router,
     );
   }
 }

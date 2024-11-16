@@ -1,4 +1,4 @@
-import 'note.dart';
+import '../models/note.dart';
 
 abstract class NoteRepository {
   List<Note> getNotes();

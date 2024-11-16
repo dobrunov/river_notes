@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../models/note.dart';
 import '../providers/note_provider.dart';
-import 'add_edit_note_page.dart';
+import '../routes/screen_routes.dart';
 
 class ViewNotePage extends ConsumerWidget {
   final Note note;
@@ -21,20 +22,13 @@ class ViewNotePage extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddEditNotePage(note: currentNote),
-                ),
-              );
-            },
+            onPressed: () => context.push(ScreenRoutes.addEditNote, extra: currentNote),
           ),
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
               ref.read(notesProvider.notifier).deleteNote(currentNote);
-              Navigator.pop(context);
+              context.pop();
             },
           ),
         ],

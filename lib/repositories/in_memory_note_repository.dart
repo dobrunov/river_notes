@@ -1,5 +1,5 @@
 import '../models/note.dart';
-import '../models/note_repository.dart';
+import 'note_repository.dart';
 
 class InMemoryNoteRepository implements NoteRepository {
   List<Note> _notes = [];
