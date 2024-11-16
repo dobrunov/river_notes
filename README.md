@@ -7,5 +7,6 @@ Note app with riverpod
 - simple version
 - rewrite to mvvm
 - added dependency inversion
+- added 'go_router'
 
 
